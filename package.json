@@ -21,8 +21,10 @@
   },
   "homepage": "https://github.com/azemavdic/online-shop-mern#readme",
   "dependencies": {
+    "@types/colors": "^1.2.1",
     "@types/dotenv": "^8.2.0",
     "@types/mongoose": "^5.10.3",
+    "colors": "^1.4.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.11.8"
