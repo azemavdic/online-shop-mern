@@ -53,7 +53,7 @@ const registerUser = asyncHandler(async (req, res) => {
     });
   } else {
     res.status(400);
-    throw new Error("Invalid user data");
+    throw new Error("Netačni korisničko podaci");
   }
 });
 
