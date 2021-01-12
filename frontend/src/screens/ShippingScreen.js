@@ -62,7 +62,7 @@ const ShippingScreen = ({history}) => {
           </Form.Group>
 
           <Form.Group controlId='country'>
-            <Form.Label>Poštanski broj</Form.Label>
+            <Form.Label>Država</Form.Label>
             <Form.Control
               type='text'
               placeholder='Upiši državu'
