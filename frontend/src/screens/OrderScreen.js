@@ -25,12 +25,11 @@ const OrderScreen = ({match}) => {
     }
 
     useEffect(()=>{
-        dispatch(getOrderDetails(orderId))
-    },[dispatch, orderId])
+        if(!order || order._id !== orderId){
+            dispatch(getOrderDetails(orderId))
+        }   
+    },[dispatch, orderId, order])
 
-    const placeOrderHandler = ()=>{
-        console.log('Narudžba');
-    }
    
     return loading ? <Loader /> : error ? <Message variant='danger'>{error}</Message> : <>
         <h1>Narudžba {order._id}</h1>
