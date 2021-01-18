@@ -49,6 +49,7 @@ const OrderScreen = ({match}) => {
 
         if(!order || successPay){
             dispatch({ type: ORDER_PAY_RESET })
+            
             dispatch(getOrderDetails(orderId))
         }else if(!order.isPaid){
             if(!window.paypal){
@@ -59,6 +60,7 @@ const OrderScreen = ({match}) => {
         }   
     },[dispatch, orderId, successPay, order])
 
+    //Nakon uplate preko Paypal ove akcije idu
     const succesPaymentHandler = (paymentResult)=>{
         console.log(paymentResult);
         dispatch(payOrder(orderId, paymentResult))

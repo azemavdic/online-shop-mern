@@ -6,6 +6,7 @@ import Message from "../components/Message";
 import CheckoutSteps from '../components/CheckoutSteps';
 import { createOrder } from '../actions/orderActions'
 
+
 const PlaceOrderScreen = ({history}) => {
     
 
@@ -28,6 +29,7 @@ const PlaceOrderScreen = ({history}) => {
     useEffect(()=>{
         if(success){
             history.push(`/order/${order._id}`)
+            
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
     },[success, history])

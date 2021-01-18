@@ -8,7 +8,7 @@ import { getUserDetails, updateUserProfile } from "../actions/userActions";
 // import { USER_UPDATE_PROFILE_RESET } from "../constants/userConstants";
 import { listMyOrders } from '../actions/orderActions'
 
-const ProfileScreen = ({ location, history }) => {
+const ProfileScreen = ({ match, history }) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -28,6 +28,7 @@ const ProfileScreen = ({ location, history }) => {
 
   const orderMyList = useSelector((state) => state.orderMyList);
   const { loading: loadingOrders, error: errorOrders, orders } = orderMyList;
+
 
   useEffect(() => {
     if (!userInfo) {
@@ -139,7 +140,7 @@ const ProfileScreen = ({ location, history }) => {
                   </td>
                   <td>
                     <LinkContainer to={`/order/${order._id}`}>
-                      <Button variant='light'>Detalji</Button>
+                      <Button variant='light' >Detalji</Button>
                     </LinkContainer>
                   </td>
                 </tr>
