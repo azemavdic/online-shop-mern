@@ -110,4 +110,18 @@ const getUsers = asyncHandler(async (req, res) => {
   res.json(users)
 });
 
-export { authUser, getUserProfile, registerUser, updateUserProfile, getUsers };
+// @desc Delete user
+// @route Delete /api/users/:id
+// @access Private/Admin 
+const deleteUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id);
+  if(user){
+    await user.remove()
+    res.json({ message: 'Korisnik izbrisan.' })
+  }else{
+    res.status(404)
+    throw new Error('Korisnik nije pronađen.')
+  }
+});
+
+export { authUser, getUserProfile, registerUser, updateUserProfile, getUsers, deleteUser };
