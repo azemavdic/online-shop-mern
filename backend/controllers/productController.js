@@ -50,8 +50,8 @@ const createProduct = asyncHandler(async(req, res)=>{
     description: 'Sample description'
   })
 
-  const createdProduct = product.save()
-  res.status(201).json(createProduct)
+  const createdProduct = await product.save()
+  res.status(201).json(createdProduct)
 })
 
 // @desc Update a product
@@ -59,7 +59,7 @@ const createProduct = asyncHandler(async(req, res)=>{
 // @access Private/Admin 
 const updateProduct = asyncHandler(async(req, res)=>{
   const product = await Product.findById(req.params.id)
-  const { name, price, description, imag, brand, category, countInStock } = req.body
+  const { name, price, description, image, brand, category, countInStock } = req.body
   if(product){
     product.name= name
     product.price= price
