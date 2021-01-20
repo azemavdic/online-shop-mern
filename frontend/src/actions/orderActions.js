@@ -20,10 +20,8 @@ export const createOrder = (order) => async (dispatch, getState) => {
     const { data } = await axios.post(`/api/orders`, order, config);
 
     dispatch({ type: ORDER_CREATE_SUCCESS, payload: data });
-
-    // dispatch({ type: USER_LOGIN_SUCCESS, payload: data });
-
-    // localStorage.setItem("userInfo", JSON.stringify(data));
+    dispatch({ type: CART_RESET_ITEM, payload: data})
+   localStorage.removeItem('cartItems')
   } catch (error) {
     dispatch({
       type: ORDER_CREATE_FAIL,
