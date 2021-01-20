@@ -20,7 +20,7 @@ function checkFileType(file, cb) {
     if(extname && mimetype){
         return cb(null, true)
     }else {
-        return cb('Samo slike se mogu dodati!')
+        cb('Samo slike se mogu dodati!')
     }
 }
 
