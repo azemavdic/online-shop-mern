@@ -79,4 +79,42 @@ const updateProduct = asyncHandler(async(req, res)=>{
   }
 })
 
-export { getProducts, getProductById, deleteProduct, createProduct, updateProduct };
+// @desc Create new review
+// @route POST /api/products/:id/reviews
+// @access Private 
+const createProductReview = asyncHandler(async(req, res)=>{
+  const product = await Product.findById(req.params.id)
+  const { rating, comment } = req.body
+  
+  if(product){
+    
+    const alrearyReviewed = product.review.find( r => r.user.toString() === req.user._id.toString())
+
+    if(alrearyReviewed){
+      res.status(400)
+      throw new Error('Proizvod je već dobio recenziju.')
+    }
+
+    const review = {
+      name: req.user.name,
+      rating: Number(rating),
+      comment,
+      user: req.user._id
+    }
+
+    product.reviews.push(review)
+    
+    product.numReviews = product.reviews.length
+    
+    product.rating = product.reviews.reduce((acc,item)=> item.rating + acc,0) / product.reviews.length
+
+    await product.save()
+    res.status(201).json({ message: 'Recenzija dodana' })
+
+  }else {
+    res.status(404)
+    throw new Error('Proizvod nije pronađen.')
+  }
+})
+
+export { getProducts, getProductById, deleteProduct, createProduct, updateProduct, createProductReview };
